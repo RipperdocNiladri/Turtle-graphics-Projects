@@ -89,6 +89,7 @@ Turtle-Image-Tracer/
 │
 ├── turtle_image.py
 ├── YOUR_IMAGE.png
+├── mandala.py
 └── README.md
 ```
 
