@@ -88,6 +88,7 @@ pip install opencv-python
 Turtle-Image-Tracer/
 │
 ├── turtle_image.py
+├── turtle_colour_image.py
 ├── YOUR_IMAGE.png
 ├── mandala.py
 └── README.md
@@ -124,8 +125,237 @@ The program will:
 9. Draw the detected contours
 
 ---
+# ⚙️ Turtle Colour Image Configuration
 
-## ⚙️ Configuration
+Python's **Turtle Graphics** provides multiple ways to control how fast your drawing is rendered.
+
+There are two main methods:
+
+1. 🚀 **Screen-level rendering control** using `screen.tracer()`
+2. 🐢 **Turtle movement speed** using `t.speed()`
+
+> 💡 **Recommendation:** If your project performs lots of drawing operations, `screen.tracer()` has a much greater effect on the overall rendering speed than `t.speed()`.
+
+---
+
+## 🚀 Method 1 — `screen.tracer()`
+
+The recommended way to control the **overall drawing/rendering speed** is:
+
+```python
+screen.tracer(frames, delay_in_ms)
+```
+
+For example:
+
+```python
+screen.tracer(10, 0)
+```
+
+The two parameters control how frequently the Turtle screen updates and the delay between updates.
+
+### ⚙️ Speed Presets
+
+| Desired Speed                    | Configuration                                | Description                                                 |
+| -------------------------------- | -------------------------------------------- | ----------------------------------------------------------- |
+| 🚀 **Super Fast / Near Instant** | `screen.tracer(50, 0)` or `screen.tracer(0)` | Renders extremely quickly.                                  |
+| ⚡ **Fast**                       | `screen.tracer(10, 0)`                       | Fast drawing while still allowing you to see progress.      |
+| ☕ **Medium / Relaxed**           | `screen.tracer(2, 5)`                        | Updates every 2 strokes with a small delay.                 |
+| 🐢 **Slow & Cinematic**          | `screen.tracer(1, 25)`                       | Updates frequently for a slower, deliberate drawing effect. |
+
+### 🔍 Example
+
+```python
+screen = turtle.Screen()
+
+screen.tracer(10, 0)
+
+# Drawing code...
+```
+
+---
+
+## 🐢 Method 2 — `t.speed()`
+
+Python Turtle also provides a built-in movement speed control:
+
+```python
+t.speed(DRAW_SPEED)
+```
+
+For example:
+
+```python
+DRAW_SPEED = 0
+
+t.speed(DRAW_SPEED)
+```
+
+### ⚙️ Turtle Speed Values
+
+| Value | Speed                          |
+| ----: | ------------------------------ |
+|   `1` | 🐢 Slowest                     |
+|   `3` | 🐌 Slow                        |
+|   `6` | 🚶 Normal                      |
+|  `10` | ⚡ Fast                         |
+|   `0` | 🚀 Fastest — no turn animation |
+
+Example:
+
+```python
+DRAW_SPEED = 6
+t.speed(DRAW_SPEED)
+```
+
+---
+
+## ⚠️ Which One Should You Use?
+
+When your project uses a large number of drawing operations, `screen.tracer()` generally has a **much bigger impact** on the final rendering speed.
+
+Think of it like this:
+
+```text
+t.speed()
+     ↓
+Controls Turtle movement animation
+
+screen.tracer()
+     ↓
+Controls screen refresh / rendering
+     ↓
+Affects overall drawing performance
+```
+
+For complex drawings, you can combine both:
+
+```python
+DRAW_SPEED = 0
+
+t.speed(DRAW_SPEED)
+screen.tracer(10, 0)
+```
+
+---
+
+# 📋 Quick Copy-Paste Examples
+
+## 🐢 Slow Down the Drawing
+
+If you want to clearly watch the Turtle sketch **stroke by stroke**, use:
+
+```python
+screen.tracer(1, 15)
+```
+
+This updates the screen after each drawing step with a small delay.
+
+---
+
+## ⚡ Fast Drawing
+
+For a fast but still visible rendering:
+
+```python
+screen.tracer(10, 0)
+```
+
+---
+
+## 🚀 Draw Almost Instantly
+
+If you want the drawing to appear as quickly as possible:
+
+```python
+screen.tracer(0)
+```
+
+This disables automatic screen updates while the drawing is being generated.
+
+If you use this approach, make sure the screen is updated after the drawing:
+
+```python
+screen.tracer(0)
+
+# Drawing code...
+
+screen.update()
+```
+
+---
+
+## 🎯 Recommended Configurations
+
+### 🎬 Cinematic Mode
+
+Best when you want to record the Turtle drawing process:
+
+```python
+screen.tracer(1, 15)
+t.speed(3)
+```
+
+### ⚡ Preview Mode
+
+Good balance between speed and visibility:
+
+```python
+screen.tracer(10, 0)
+t.speed(6)
+```
+
+### 🚀 Performance Mode
+
+Best for generating complex drawings quickly:
+
+```python
+screen.tracer(0)
+t.speed(0)
+
+# Drawing code...
+
+screen.update()
+```
+
+---
+
+## 🧠 In Short
+
+```text
+             TURTLE DRAWING SPEED
+                     │
+          ┌──────────┴──────────┐
+          │                     │
+      t.speed()           screen.tracer()
+          │                     │
+   Turtle animation       Screen rendering
+          │                     │
+     0 → Fastest          0 → No automatic
+                          screen updates
+```
+
+> 💡 **Tip:** For image-tracing or complex Turtle projects, experiment with `screen.tracer()` first. It usually makes the biggest difference in drawing performance.
+
+---
+
+### 🔧 Main Controls
+
+```python
+# Turtle movement speed
+t.speed(0)
+
+# Screen rendering speed
+screen.tracer(10, 0)
+```
+
+Adjust these values depending on whether you want **performance**, **visibility**, or a **cinematic drawing effect**. 🐢🎨
+
+
+
+
+## ⚙️ Turtle Image Configuration
+
 
 You can adjust the following values inside `turtle_image.py`:
 
@@ -408,18 +638,6 @@ It demonstrates the connection between:
 
 > **Computer Vision → Geometry → Coordinates → Graphics**
 
----
-
-## 📌 Limitations
-
-The project works best with:
-
-* Clean line-art
-* High-contrast images
-* Black lines
-* White backgrounds
-
-Complex photographs may produce many unwanted contours and require additional preprocessing.
 
 ---
 
