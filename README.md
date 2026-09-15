@@ -1,6 +1,6 @@
 # 🐢 Turtle Image Tracer
 
-A simple computer-vision project that converts **black-and-white line-art images into drawable contours** and recreates them using Python's built-in **Turtle Graphics**.
+A simple computer-vision project that converts **images into drawable contours** and recreates them using Python's built-in **Turtle Graphics**.
 
 The project combines **OpenCV image processing** with **Turtle Graphics** to turn an image into a sequence of paths that a Turtle can automatically draw on the screen.
 
