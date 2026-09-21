@@ -641,10 +641,6 @@ It demonstrates the connection between:
 
 ---
 
-## 👨‍💻 Author
-
-**Niladri**
-
 Engineering student exploring:
 
 * 🐍 Python
@@ -681,3 +677,7 @@ This is primarily a personal learning and experimentation project.
 <p align="center">
   Made with Python 🐍, OpenCV 👁️ and Turtle 🐢
 </p>
+
+## Author 
+
+**Niladri Pal**
